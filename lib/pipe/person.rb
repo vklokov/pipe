@@ -3,7 +3,7 @@
 module Pipe
   class Person < Entity
     def inspect
-      "<Pipe::Person @id=#{id} @name=#{name} @email=#{email}"
+      "<Pipe::Person @id=#{id} @name=#{name} @email=#{email}>"
     end
 
     def organization

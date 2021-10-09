@@ -2,13 +2,14 @@
 
 module Pipe
   class Field
-    attr_reader :id, :options, :kind, :key
+    attr_reader :id, :options, :kind, :key, :source
 
     def inspect
       "<Pipe::Field @id=#{id} @kind=#{kind} @key=#{key} @options=#{options}>"
     end
 
     def initialize(source)
+      @source  = source
       @id      = source[:id]
       @name    = source[:name]
       @options = source[:options]

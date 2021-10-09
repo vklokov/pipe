@@ -1,6 +1,7 @@
 /.bundle/
 /.yardoc
 /_yardoc/
+/bin/debug
 /coverage/
 /doc/
 /pkg/

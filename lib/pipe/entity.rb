@@ -9,8 +9,18 @@ module Pipe
       define_attributes
     end
 
+    def as_json
+      {
+        object: self.class.kind,
+        source: @source,
+        fields: @fields.map(&:source)
+      }
+    end
+
     def define_attributes
-      serialized.each_pair do |key, value|
+      serialized_keys = Serializer.new(@source, self.class.fields, self.class.schema).serialize
+
+      serialized_keys.each_pair do |key, value|
         field = key.to_s.gsub(/[0-9]/, '')
         self.class.class_eval { attr_reader field }
         self.instance_variable_set("@#{field}", value)
@@ -18,9 +28,7 @@ module Pipe
       self
     end
 
-    def serialized
-      Serializer.new(@source, self.class.fields, self.class.schema).serialize
-    end
+    private :define_attributes
 
     class << self
       def find(id)

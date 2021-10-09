@@ -34,7 +34,7 @@ module Pipe
       name  = @schema[key.to_sym] || key
       field = find_field_by_key(key)
 
-      return [name, value] unless field
+      return [name, regular_field_value(value)] unless field
 
       case
       when field.enum?

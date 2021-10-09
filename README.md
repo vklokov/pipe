@@ -22,7 +22,7 @@ Set ENV variable with api token
 
     $ ENV['PD_API_TOKEN'] = 'your-secret-token'
     
-Set yml schema with custom fields difinition, where you able to define you own names for each pipedrive fields
+Set yml schema with custom fields definition, where you able to define you own names for each pipedrive fields
 
     $ Pipe::Config.schema = YAML.load_file(File.join('path', 'to', 'schema.yml'))[:development]
 

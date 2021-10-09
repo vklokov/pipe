@@ -46,5 +46,16 @@ module Pipe
     def relation?
       ['people', 'org', 'user'].include? @kind
     end
+
+    class << self
+      def fields(resource)
+        response = Pipe::Client.new(Object.const_get("Pipe::Routes::ROUTE_#{resource.upcase}")).get
+        response[:data].map do |field|
+          new(field)
+        end
+      rescue
+        []
+      end
+    end
   end
 end

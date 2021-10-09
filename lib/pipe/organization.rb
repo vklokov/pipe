@@ -8,7 +8,7 @@ module Pipe
 
     class << self
       def fields
-        @fields ||= fields_for(Pipe::Routes::ROUTE_ORGANIZATION_FIELDS)
+        @fields ||= Pipe::Field.fields(:organization)
       end
     end
   end

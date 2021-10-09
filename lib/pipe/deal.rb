@@ -20,7 +20,7 @@ module Pipe
 
     class << self
       def fields
-        @fields ||= fields_for(Pipe::Routes::ROUTE_DEAL_FIELDS)
+        @fields ||= Pipe::Field.fields(:deal)
       end
     end
   end

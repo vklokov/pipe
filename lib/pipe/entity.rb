@@ -112,15 +112,6 @@ module Pipe
         Serializer.new(params, fields, schema).deserialize
       end
 
-      def fields_for(resource)
-        response = Pipe::Client.new(resource).get
-        response[:data].map do |field|
-          Pipe::Field.new(field)
-        end
-      rescue
-        []
-      end
-
       def schema
         Pipe::Utils.deep_symbolize_keys(Pipe::Config.schema)[kind]
       end

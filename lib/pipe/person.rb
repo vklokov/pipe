@@ -14,7 +14,7 @@ module Pipe
 
     class << self
       def fields
-        @fields ||= fields_for(Pipe::Routes::ROUTE_PERSON_FIELDS)
+        @fields ||= Pipe::Field.fields(:person)
       end
     end
   end

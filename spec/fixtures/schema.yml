@@ -1,0 +1,9 @@
+test:
+  filters:
+    CUSTOM_FILTER: 123
+  deal:
+    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa11: custom_deal_field
+  person:
+    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa22: custom_person_field
+  organization:
+    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa33: custom_organization_field

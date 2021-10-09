@@ -18,11 +18,20 @@ And then execute:
     
 ## Setup
 
-Pipe::Config.schema = 
+Set ENV variable with api token
+
+    $ ENV['PD_API_TOKEN'] = 'your-secret-token'
+    
+Set yml schema with custom fields difinition, where you able to define you own names for each pipedrive fields
+
+    $ Pipe::Config.schema = YAML.load_file(File.join('path', 'to', 'schema.yml'))[:development]
 
 ## Usage
 
-TODO: Write usage instructions here
+Find and resource
+    $ Pipe::Person.find(100)
+    $ Pipe::Deal.find(100)
+    $ Pipe::Organization.find(100)
 
 ## Development
 

@@ -30,11 +30,16 @@ Pipe::Config.schema = YAML.load_file(File.join('path', 'to', 'schema.yml'))[:dev
 
 ## Usage
 
-Find and resource
+Find an resource
 ```ruby
 Pipe::Person.find(100)
 Pipe::Deal.find(100)
 Pipe::Organization.find(100)
+```
+
+Update
+```ruby
+Pipe::Person.update(id, name: 'Example name') 
 ```
 
 ## Development

@@ -111,7 +111,7 @@ RSpec.describe Pipe::Client do
 
     context "#base_url" do
       it 'should return base url' do
-        base_url = [ENV['PD_API_HOST'], url].join
+        base_url = [Pipe::Client::API_HOST, url].join
 
         expect(client.send(:base_url)).to eq(base_url)
       end
@@ -119,7 +119,7 @@ RSpec.describe Pipe::Client do
 
     context "#base_signed_url" do
       it 'should return base url with token attribute' do
-        signed_url = [ENV['PD_API_HOST'], url, "?api_token=#{ENV['PD_API_TOKEN']}"].join
+        signed_url = [Pipe::Client::API_HOST, url, "?api_token=#{ENV['PD_API_TOKEN']}"].join
 
         expect(client.send(:base_signed_url)).to eq(signed_url)
       end

@@ -18,14 +18,13 @@ RSpec.configure do |config|
   end
 
   config.before(:all) do
-    ENV['PD_API_HOST']  = 'https://pipedrive.example.com'
     ENV['PD_API_TOKEN'] = 'secret'
   end
 
   config.before(:each) do
     token = 'secret'
     # 1. Activity create
-    stub_request(:post, "https://pipedrive.example.com/v1/activities?api_token=#{token}")
+    stub_request(:post, "https://api.pipedrive.com/v1/activities?api_token=#{token}")
       .to_return(
         status: 200,
         body: CREATE_ACTIVITY.to_json
@@ -33,7 +32,7 @@ RSpec.configure do |config|
     
     # 2. Fields
     # Person fields
-    stub_request(:get, "https://pipedrive.example.com/v1/personFields?api_token=#{token}")
+    stub_request(:get, "https://api.pipedrive.com/v1/personFields?api_token=#{token}")
       .to_return(
         status: 200,
         body: GET_PERSON_FIELDS.to_json
@@ -41,28 +40,28 @@ RSpec.configure do |config|
 
     # 3. Persons
     # GET: 1
-    stub_request(:get, "https://pipedrive.example.com/v1/persons/1?api_token=#{token}")
+    stub_request(:get, "https://api.pipedrive.com/v1/persons/1?api_token=#{token}")
       .to_return(
         status: 200,
         body: GET_PERSON.to_json
       )
   
     # POST: 1
-    stub_request(:post, "https://pipedrive.example.com/v1/persons/?api_token=#{token}")
+    stub_request(:post, "https://api.pipedrive.com/v1/persons/?api_token=#{token}")
       .to_return(
         status: 200,
         body: GET_PERSON.to_json
       )
 
     # PUT: 1
-    stub_request(:put, "https://pipedrive.example.com/v1/persons/?api_token=#{token}")
+    stub_request(:put, "https://api.pipedrive.com/v1/persons/?api_token=#{token}")
       .to_return(
         status: 200,
         body: GET_PERSON.to_json
       )
     
     # DELETE: 1
-    stub_request(:delete, "https://pipedrive.example.com/v1/persons/?api_token=#{token}")
+    stub_request(:delete, "https://api.pipedrive.com/v1/persons/?api_token=#{token}")
       .to_return(
         status: 200,
         body: GET_PERSON.to_json

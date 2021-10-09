@@ -2,6 +2,8 @@
 
 module Pipe
   class Client
+    API_HOST = 'https://api.pipedrive.com'
+
     attr_reader :url, :params
 
     def initialize(url, params = {}, logger = Pipe::Config.logger, http_client = ::RestClient::Request)
@@ -67,15 +69,11 @@ module Pipe
     end
 
     def base_url
-      [api_host, url].join
+      [API_HOST, url].join
     end
 
     def api_token_attribute
       "api_token=#{api_token}"
-    end
-
-    def api_host
-      ENV['PD_API_HOST']
     end
 
     def api_token

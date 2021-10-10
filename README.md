@@ -46,7 +46,7 @@ production:
 
 Find an resource
 ```ruby
-Pipe::Person.find(100)
+Pipe::Person.find(100) # => <Pipe::Person @id=31 @name=Example name @email=example@gmail.com>
 Pipe::Deal.find(100)
 Pipe::Organization.find(100)
 ```

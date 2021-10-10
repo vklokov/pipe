@@ -25,14 +25,28 @@ Set ENV variable with api token
 Set yml schema with custom fields definition, where you able to define you own names for each pipedrive fields
 
 ```ruby
-Pipe::Config.schema = YAML.load_file(File.join('path', 'to', 'schema.yml'))[:development]
+Pipe::Config.schema = YAML.load_file(File.join('path', 'to', 'schema.yml'))[env] # env = 'test' | 'development' | 'production'
+```
+
+Schema definition:
+
+```yml
+production:
+  filters:
+    custom_filter_name: id
+  deal:
+    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx: custom_field_name
+  person:
+    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx: custom_field_name
+  organization:
+    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx: custom_field_name
 ```
 
 ## Usage
 
 Find an resource
 ```ruby
-Pipe::Person.find(100)
+Pipe::Person.find(100) # => <Pipe::Person @id=31 @name=Example name @email=example@gmail.com>
 Pipe::Deal.find(100)
 Pipe::Organization.find(100)
 ```

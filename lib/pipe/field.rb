@@ -49,7 +49,7 @@ module Pipe
 
     class << self
       def fields(resource)
-        response = Pipe::Client.new(Object.const_get("Pipe::Routes::ROUTE_#{resource.upcase}")).get
+        response = Pipe::Client.new(Object.const_get("Pipe::Routes::ROUTE_#{resource.upcase}_FIELDS")).get
         response[:data].map do |field|
           new(field)
         end

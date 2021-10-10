@@ -32,8 +32,8 @@ module Pipe
 
     class << self
       def find(id)
-        raise Exception::AttributeError, 'id has not presented' if id.nil?
-
+        raise Exception::AttributeError, 'id has not presented' unless id
+        
         request  = [Object.const_get("Pipe::Routes::ROUTE_#{kind.upcase}"), id].join
         response = Pipe::Client.new(request).get
         self.new(response[:data], fields)
@@ -71,7 +71,7 @@ module Pipe
       end
 
       def update(id, params)
-        raise Exception::AttributeError, 'id has not presented' if id.nil?
+        raise Exception::AttributeError, 'id has not presented' unless id
 
         request  = [Object.const_get("Pipe::Routes::ROUTE_#{kind.upcase}"), id].join
         response = Pipe::Client.new(request, deserialize(params)).put
@@ -82,7 +82,10 @@ module Pipe
         raise Exception::AttributeError, 'id has not presented' if id.nil?
 
         request  = [Object.const_get("Pipe::Routes::ROUTE_#{kind.upcase}"), id].join
+
         Pipe::Client.new(request).delete
+
+        true
       end
 
       def kind

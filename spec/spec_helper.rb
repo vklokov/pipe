@@ -38,12 +38,26 @@ RSpec.configure do |config|
         body: GET_PERSON_FIELDS.to_json
       )
 
+    # Organization fields
+    stub_request(:get, "https://api.pipedrive.com/v1/organizationFields?api_token=#{token}")
+      .to_return(
+        status: 200,
+        body: GET_ORGANIZATION_FIELDS.to_json
+      )
+
     # 3. Persons
     # GET: 1
     stub_request(:get, "https://api.pipedrive.com/v1/persons/1?api_token=#{token}")
       .to_return(
         status: 200,
         body: GET_PERSON.to_json
+      )
+
+    # GET: 2
+    stub_request(:get, "https://api.pipedrive.com/v1/persons/2?api_token=#{token}")
+      .to_return(
+        status: 200,
+        body: GET_PERSON_WITHOUT_ORG.to_json
       )
   
     # POST: 1
@@ -54,17 +68,25 @@ RSpec.configure do |config|
       )
 
     # PUT: 1
-    stub_request(:put, "https://api.pipedrive.com/v1/persons/?api_token=#{token}")
+    stub_request(:put, "https://api.pipedrive.com/v1/persons/1?api_token=#{token}")
       .to_return(
         status: 200,
-        body: GET_PERSON.to_json
+        body: GET_UPDATED_PERSON.to_json
       )
     
     # DELETE: 1
-    stub_request(:delete, "https://api.pipedrive.com/v1/persons/?api_token=#{token}")
+    stub_request(:delete, "https://api.pipedrive.com/v1/persons/1?api_token=#{token}")
       .to_return(
         status: 200,
-        body: GET_PERSON.to_json
+        body: GET_DELETED_PERSON.to_json
+      )
+
+    # 4. Organization
+    # GET: 1
+    stub_request(:get, "https://api.pipedrive.com/v1/organizations/1?api_token=#{token}")
+      .to_return(
+        status: 200,
+        body: GET_ORGANIZATION.to_json
       )
   end
 end

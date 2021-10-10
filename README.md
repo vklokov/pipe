@@ -25,7 +25,7 @@ Set ENV variable with api token
 Set yml schema with custom fields definition, where you able to define you own names for each pipedrive fields
 
 ```ruby
-Pipe::Config.schema = YAML.load_file(File.join('path', 'to', 'schema.yml'))[:development]
+Pipe::Config.schema = YAML.load_file(File.join('path', 'to', 'schema.yml'))[env] # env = 'test' | 'development' | 'production'
 ```
 
 Schema definition:

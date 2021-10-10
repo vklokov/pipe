@@ -28,6 +28,20 @@ Set yml schema with custom fields definition, where you able to define you own n
 Pipe::Config.schema = YAML.load_file(File.join('path', 'to', 'schema.yml'))[:development]
 ```
 
+Schema definition:
+
+```yml
+production:
+  filters:
+    custom_filter_name: id
+  deal:
+    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx: custom_field_name
+  person:
+    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx: custom_field_name
+  organization:
+    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx: custom_field_name
+```
+
 ## Usage
 
 Find an resource

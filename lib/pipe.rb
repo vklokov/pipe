@@ -3,7 +3,7 @@ require 'json'
 require 'date'
 require 'yaml'
 
-require "pipe/version"
+require 'pipe/version'
 require 'pipe/exception'
 require 'pipe/config'
 require 'pipe/utils'

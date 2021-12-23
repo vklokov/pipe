@@ -14,6 +14,7 @@ module Pipe
           url = Pipe::Routes::ROUTE_FILE_DOWNLOAD.sub(':id', file[:id].to_s)
 
           new(
+            id: file[:id],
             name: file[:file_name],
             url: Pipe::Client.new(url).send(:base_signed_url)
           )
@@ -33,6 +34,7 @@ module Pipe
             url = Pipe::Routes::ROUTE_FILE_DOWNLOAD.sub(':id', file[:id].to_s)
 
             files << new(
+              id: file[:id],
               name: file[:name],
               url: Pipe::Client.new(url).send(:base_signed_url)
             )
@@ -43,9 +45,10 @@ module Pipe
       end
     end
 
-    attr_reader :name, :url
+    attr_reader :id, :name, :url
 
-    def initialize(name:, url:)
+    def initialize(id:, name:, url:)
+      @id = id
       @name = name
       @url = url
     end

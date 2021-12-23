@@ -12,4 +12,5 @@ module Pipe::Routes
   ROUTE_ACTIVITIES           = '/v1/activities'
   ROUTE_ITEM_SEARCH          = '/v1/itemSearch/field/'
   ROUTE_USER_BY_EMAIL        = '/v1/users/find'
+  ROUTE_NOTES                = '/v1/notes'
 end

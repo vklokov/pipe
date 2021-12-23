@@ -19,6 +19,7 @@ require 'pipe/user'
 require 'pipe/deal'
 require 'pipe/person'
 require 'pipe/organization'
+require 'pipe/note'
 
 module Pipe
   class << self

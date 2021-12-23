@@ -6,7 +6,7 @@ module Pipe
 
     attr_reader :url, :params
 
-    def initialize(url, params = {}, logger = Pipe::Config.logger, http_client = ::RestClient::Request)
+    def initialize(url, params = {}, logger = Pipe.config.logger, http_client = ::RestClient::Request)
       @url    = url
       @params = params
       @logger = logger
@@ -54,18 +54,18 @@ module Pipe
 
     def normalize_url_with_request_method(method)
       if method == :get
-        return [base_signed_url, query_parameters].reject(&:empty?).join("&")
+        return [base_signed_url, query_parameters].reject(&:empty?).join('&')
       end
 
       base_signed_url
     end
 
     def query_parameters
-      "#{@params.each_pair.map { |k, v| "#{k}=#{v}" }.join('&')}"
+      @params.each_pair.map { |k, v| "#{k}=#{v}" }.join('&')
     end
 
     def base_signed_url
-      "#{base_url}?#{api_token_attribute}"
+      [base_url, api_token_attribute].join('?')
     end
 
     def base_url
@@ -77,7 +77,7 @@ module Pipe
     end
 
     def api_token
-      ENV['PD_API_TOKEN']
+      Pipe.config.api_token
     end
   end
 end

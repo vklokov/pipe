@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    pipe (0.2.0)
+    pipe (0.2.2)
       rest-client
 
 GEM

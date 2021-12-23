@@ -6,7 +6,12 @@ module Pipe
 
     attr_reader :url, :params
 
-    def initialize(url, params = {}, logger = Pipe.config.logger, http_client = ::RestClient::Request)
+    def initialize(
+      url,
+      params = {},
+      logger = Pipe.config.logger,
+      http_client = ::RestClient::Request
+    )
       @url    = url
       @params = params
       @logger = logger

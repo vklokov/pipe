@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rest-client'
 require 'json'
 require 'date'
@@ -18,4 +20,14 @@ require 'pipe/deal'
 require 'pipe/person'
 require 'pipe/organization'
 
-module Pipe; end
+module Pipe
+  class << self
+    def config
+      @config ||= Pipe::Config.new
+    end
+
+    def configure
+      yield config
+    end
+  end
+end

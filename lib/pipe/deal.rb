@@ -25,7 +25,7 @@ module Pipe
     end
 
     def deal_files
-      Pipe::File.deal_files(id)
+      Pipe::File.find_all_deal_files(id)
     end
   end
 end

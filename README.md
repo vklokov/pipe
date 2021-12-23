@@ -16,8 +16,16 @@ And then execute:
 
     $ bundle install
     
-## Setup
+## Configure (since v.0.2.0)
 
+```ruby
+Pipe.configure do |c|
+  c.api_token = 'your-pipedrive-api-token'
+  c.schema = 'your-custom-fields-schema' # for example: YAML.load_file(File.join('path', 'to', 'schema.yml'))
+end
+```
+
+## Configure (previous versions)
 Set ENV variable with api token
 
     $ export PD_API_TOKEN=your-secret-token

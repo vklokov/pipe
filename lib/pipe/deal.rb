@@ -24,7 +24,7 @@ module Pipe
       Pipe::Person.find(person_id)
     end
 
-    def deal_files
+    def files
       Pipe::File.find_all_deal_files(id)
     end
   end

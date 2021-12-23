@@ -20,6 +20,7 @@ RSpec.configure do |config|
   config.before(:all) do
     Pipe.configure do |c|
       c.api_token = 'secret'
+      c.schema = YAML.load_file(File.join('spec', 'fixtures', 'schema.yml'))['test']
     end
   end
 

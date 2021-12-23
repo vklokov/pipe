@@ -3,7 +3,6 @@
 RSpec.describe Pipe::Person do
   context "#entity" do
     context "#find" do
-
       subject { described_class.find(1) }
 
       it 'should return new person' do

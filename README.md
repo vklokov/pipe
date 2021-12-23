@@ -55,7 +55,7 @@ Pipe::Person.update(id, name: 'Example name')
 
 Deal files
 ```ruby
-Pipe::Deal.find(100).files
+Pipe::Deal.find(100).files # => [<Pipe::File @id=1 @name=file.txt @url='file-download-url'>]
 ```
 or you can do the same from Pipe::File directly
 ```ruby

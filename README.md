@@ -25,17 +25,6 @@ Pipe.configure do |c|
 end
 ```
 
-## Configure (previous versions)
-Set ENV variable with api token
-
-    $ export PD_API_TOKEN=your-secret-token
-    
-Set yml schema with custom fields definition, where you able to define you own names for each pipedrive fields
-
-```ruby
-Pipe::Config.schema = YAML.load_file(File.join('path', 'to', 'schema.yml'))[env] # env = 'test' | 'development' | 'production'
-```
-
 Schema definition:
 
 ```yml
@@ -62,6 +51,15 @@ Pipe::Organization.find(100)
 Update
 ```ruby
 Pipe::Person.update(id, name: 'Example name') 
+```
+
+Deal files
+```ruby
+Pipe::Deal.find(100).files
+```
+or you can do the same from Pipe::File directly
+```ruby
+Pipe::File.find_all_deal_files(100)
 ```
 
 ## Development

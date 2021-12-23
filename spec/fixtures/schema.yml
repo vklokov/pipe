@@ -1,4 +1,11 @@
 test:
+  pipelines:
+    1:
+      name: Example Pipeline
+      stages:
+        1: Start
+        2: Finish
+
   filters:
     CUSTOM_FILTER: 123
   deal:

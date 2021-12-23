@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require "bundler/setup"
+require 'bundler/setup'
 require 'webmock/rspec'
 
-require "pipe"
+require 'pipe'
 require_relative 'fixtures/responses'
 
 RSpec.configure do |config|
@@ -18,7 +18,10 @@ RSpec.configure do |config|
   end
 
   config.before(:all) do
-    ENV['PD_API_TOKEN'] = 'secret'
+    Pipe.configure do |c|
+      c.api_token = 'secret'
+      c.schema = YAML.load_file(File.join('spec', 'fixtures', 'schema.yml'))['test']
+    end
   end
 
   config.before(:each) do
@@ -29,7 +32,7 @@ RSpec.configure do |config|
         status: 200,
         body: CREATE_ACTIVITY.to_json
       )
-    
+
     # 2. Fields
     # Person fields
     stub_request(:get, "https://api.pipedrive.com/v1/personFields?api_token=#{token}")
@@ -59,7 +62,7 @@ RSpec.configure do |config|
         status: 200,
         body: GET_PERSON_WITHOUT_ORG.to_json
       )
-  
+
     # POST: 1
     stub_request(:post, "https://api.pipedrive.com/v1/persons/?api_token=#{token}")
       .to_return(
@@ -73,7 +76,7 @@ RSpec.configure do |config|
         status: 200,
         body: GET_UPDATED_PERSON.to_json
       )
-    
+
     # DELETE: 1
     stub_request(:delete, "https://api.pipedrive.com/v1/persons/1?api_token=#{token}")
       .to_return(

@@ -16,16 +16,13 @@ And then execute:
 
     $ bundle install
     
-## Setup
-
-Set ENV variable with api token
-
-    $ export PD_API_TOKEN=your-secret-token
-    
-Set yml schema with custom fields definition, where you able to define you own names for each pipedrive fields
+## Configure (since v.0.2.0)
 
 ```ruby
-Pipe::Config.schema = YAML.load_file(File.join('path', 'to', 'schema.yml'))[env] # env = 'test' | 'development' | 'production'
+Pipe.configure do |c|
+  c.api_token = 'your-pipedrive-api-token'
+  c.schema = 'your-custom-fields-schema' # for example: YAML.load_file(File.join('path', 'to', 'schema.yml'))
+end
 ```
 
 Schema definition:
@@ -54,6 +51,15 @@ Pipe::Organization.find(100)
 Update
 ```ruby
 Pipe::Person.update(id, name: 'Example name') 
+```
+
+Deal files
+```ruby
+Pipe::Deal.find(100).files # => [<Pipe::File @id=1 @name=file.txt @url='file-download-url'>]
+```
+or you can do the same from Pipe::File directly
+```ruby
+Pipe::File.find_all_deal_files(100)
 ```
 
 ## Development

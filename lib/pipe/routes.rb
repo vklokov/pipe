@@ -9,7 +9,11 @@ module Pipe::Routes
   ROUTE_DEAL_FIELDS          = '/v1/dealFields'
   ROUTE_PERSONS              = '/v1/persons/'
   ROUTE_DEALS                = '/v1/deals/'
+  ROUTE_DEALS_FILES          = '/v1/deals/:id/files'
+  ROUTE_DEALS_MAIL_MESSAGES  = '/v1/deals/:id/mailMessages'
   ROUTE_ACTIVITIES           = '/v1/activities'
   ROUTE_ITEM_SEARCH          = '/v1/itemSearch/field/'
   ROUTE_USER_BY_EMAIL        = '/v1/users/find'
+  ROUTE_NOTES                = '/v1/notes'
+  ROUTE_FILE_DOWNLOAD        = '/v1/files/:id/download'
 end

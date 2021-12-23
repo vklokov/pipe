@@ -1,0 +1,9 @@
+AllCops:
+  TargetRubyVersion: 2.6
+  Exclude:
+    - 'spec/**/*'
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+Style/Documentation:
+  Enabled: false

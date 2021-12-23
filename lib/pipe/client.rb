@@ -46,13 +46,13 @@ module Pipe
       @logger.info("Pipe API #{method.to_s.upcase}: '#{url}', payload: #{@params}")
 
       response = @http_client.execute(
-        method:  method,
-        url:     normalize_url_with_request_method(method),
-        payload: @params,
+        method: method,
+        url: normalize_url_with_request_method(method),
+        payload: @params
       )
 
       JSON.parse(response.body, symbolize_names: true)
-    rescue => error
+    rescue StandardError => error
       @logger.error("Pipe API ERROR '#{error}'")
       raise error
     end

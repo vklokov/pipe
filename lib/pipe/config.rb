@@ -20,7 +20,7 @@ module Pipe
     end
 
     def cache_fields_time_delta
-      Time.now + CACHE_FIELDS_TIME_DELTA
+      CACHE_FIELDS_TIME_DELTA
     end
 
     # Stub logger

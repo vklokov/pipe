@@ -52,51 +52,57 @@ module Pipe
 
       def fields(resource_name)
         @resource = resource_name
-        fetch_fields
-        # if Pipe.config.cache_enabled?
-        #   fetch_cache_fields
-        # else
-        #   fetch_fields
-        # end
+
+        if Pipe.config.cache_enabled?
+          fetch_cache_fields
+        else
+          fetch_fields
+        end
       end
 
       private
 
-      # def resource_cache_key
-      #   [
-      #     Pipe.config.cache_store_prefix,
-      #     resource,
-      #     'fields'
-      #   ].join('-')
-      # end
+      def resource_cache_key
+        [
+          Pipe.config.cache_store_prefix,
+          resource,
+          'fields'
+        ].join('-')
+      end
 
-      # def fetch_cache_fields
-      #   return cache_fields if cache_fields.positive?
+      def fetch_cache_fields
+        return cache_fields if cache_fields.length.positive?
 
-      #   fresh_fields = fetch_fields
-      #   Pipe.config.cache_store.set(
-      #     resource_cache_key,
-      #     fresh_fields.to_json,
-      #     ex: Pipe.config.cache_fields_time_delta
-      #   )
-      #   fresh_fields
-      # rescue StandardError
-      #   fetch_fields
-      # end
+        fetch_fields
+      end
 
-      # def cache_fields
-      #   JSON.parse(
-      #     Pipe.config.cache_store.get(resource_cache_key),
-      #     symbolize_names: true
-      #   )
-      # rescue StandardError
-      #   []
-      # end
+      def cache_fields
+        data = JSON.parse(
+          Pipe.config.cache_store.get(resource_cache_key),
+          symbolize_names: true
+        )
+
+        data.map do |f|
+          new(f)
+        end
+      rescue StandardError
+        []
+      end
+
+      def write_cache(data)
+        Pipe.config.cache_store.set(
+          resource_cache_key,
+          data.to_json,
+          ex: Pipe.config.cache_fields_time_delta
+        )
+      end
 
       def fetch_fields
         route = Object.const_get("Pipe::Routes::ROUTE_#{resource.upcase}_FIELDS")
         response = Pipe::Client.new(route).get
-        response[:data].map do |field|
+        payload = response[:data]
+        write_cache(payload) if Pipe.config.cache_enabled?
+        payload.map do |field|
           new(field)
         end
       rescue StandardError
